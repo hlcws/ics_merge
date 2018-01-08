@@ -1,24 +1,24 @@
 #!/bin/sh
 #check if conf file has been specified
 if [ -z "$1" ]; then
-    echo 'Please specify config file with $spth and $www_path'
+    echo 'Please specify config file with $temp_dir and $publish_dir'
     exit 0
 fi
 
-#include conf from argument which gives us $spth and $www_path
+#include conf from argument which gives us $temp_dir and $publish_dir
 . $1
 
 #define absolute paths
-ranbat_path="${spth}ranbat.ics"
-turnier_path="${spth}turnier.ics"
-session_path="${spth}session.ics"
-merge_path="${spth}he-merge.ics"
-target_path="${www_path}he-merge.ics"
+ranbat_path="${temp_dir}ranbat.ics"
+turnier_path="${temp_dir}turnier.ics"
+session_path="${temp_dir}session.ics"
+merge_path="${temp_dir}he-merge.ics"
+target_path="${publish_dir}he-merge.ics"
 
 #Get calendars
-wget -O $ranbat_path https://forum.hardedge.org/calendar/index.php?calendar-export/11/
-wget -O $turnier_path https://forum.hardedge.org/calendar/index.php?calendar-export/7/
-wget -O $session_path https://forum.hardedge.org/calendar/index.php?calendar-export/6/
+wget -q -O $ranbat_path https://forum.hardedge.org/calendar/index.php?calendar-export/11/
+wget -q -O $turnier_path https://forum.hardedge.org/calendar/index.php?calendar-export/7/
+wget -q -O $session_path https://forum.hardedge.org/calendar/index.php?calendar-export/6/
 
 #Add category to calendars and make UID unique with prefix
 gawk -i inplace '/END:VEVENT/{print"CATEGORIES: Turnier"}1' $turnier_path
