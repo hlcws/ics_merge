@@ -1,7 +1,12 @@
 #!/bin/sh
 #check if conf file has been specified
 if [ -z "$1" ]; then
-    echo 'Please specify config file with $temp_dir and $publish_dir'
+    echo 'ERROR: No config file specified.'
+    exit 0
+fi
+
+if [ -z "$temp_dir" ] || [ -z "$publish_dir" ]; then
+    echo 'ERROR: Variables temp_dir and publish_dir not specified.'
     exit 0
 fi
 
