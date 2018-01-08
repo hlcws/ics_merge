@@ -43,7 +43,7 @@ awk '/BEGIN:VEVENT/,/END:VEVENT/' $session_path >> $merge_path
 echo "END:VCALENDAR" >> $merge_path
 
 #correct formatting (CR)
-dos2unix $merge_path
+dos2unix -q $merge_path
 
 #remove blank lines
 gawk -i inplace 'NF' $merge_path
