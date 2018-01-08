@@ -1,2 +1,2 @@
-spth='/tmp/ice-merge/'
-www_path='/var/www/ics-merge/'
+temp_dir='/tmp/ice-merge/'
+publish_dir='/var/www/ics-merge/'
