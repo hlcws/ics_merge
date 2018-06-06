@@ -40,18 +40,18 @@ VERSION:2.0
 X-WR-CALNAME:Hardedge" > $merge_path
 
 #append all calendars
-awk '/BEGIN:VEVENT/,/END:VEVENT/' $turnier_path >> $merge_path
-awk '/BEGIN:VEVENT/,/END:VEVENT/' $ranbat_path >> $merge_path
-awk '/BEGIN:VEVENT/,/END:VEVENT/' $session_path >> $merge_path
+awk -f currentyear.awk $turnier_path >> $merge_path
+awk -f currentyear.awk $ranbat_path >> $merge_path
+awk -f currentyear.awk $session_path >> $merge_path
 
 #close the ics
 echo "END:VCALENDAR" >> $merge_path
 
-#correct formatting (CR)
-dos2unix -q $merge_path
-
 #remove blank lines
 gawk -i inplace 'NF' $merge_path
+
+#correct formatting (CR)
+unix2dos -q $merge_path
 
 #publish
 cp $merge_path $target_path
