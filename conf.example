@@ -1,2 +1,3 @@
-temp_dir='/tmp/ice-merge/'
+temp_dir='/tmp/ics-merge/'
 publish_dir='/var/www/ics-merge/'
+currentyear='/currentyear.awk'
